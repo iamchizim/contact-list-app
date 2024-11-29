@@ -1,4 +1,6 @@
-import { generateId } from "./generateId";
+
+import { generateId } from './generateId';
+
 export class Contact {
   id: string;
   name: string;
@@ -12,29 +14,30 @@ export class Contact {
     this.phone = phone;
   }
 
-  getContacts(): Contact[] {
-    const contactsJson = localStorage.getItem("contacts");
+  // Static methods
+  static getContacts(): Contact[] {
+    const contactsJson = localStorage.getItem('contacts');
     return contactsJson ? JSON.parse(contactsJson) : [];
   }
 
-  addContact(newContact: Contact): void {
+  static addContact(newContact: Contact): void {
     const contactArray = this.getContacts();
     contactArray.push(newContact);
-    localStorage.setItem("contacts", JSON.stringify(contactArray));
+    localStorage.setItem('contacts', JSON.stringify(contactArray));
   }
 
-  deleteContact(id: string): void {
+  static deleteContact(id: string): void {
     const contactArray = this.getContacts();
     const updatedContactArray = contactArray.filter(
       (contact) => contact.id !== id
     );
-    localStorage.setItem("contacts", JSON.stringify(updatedContactArray));
+    localStorage.setItem('contacts', JSON.stringify(updatedContactArray));
   }
-  searchContact(query: string): Contact[]{
-    const contactArray = this.getContacts()
-    const foundContacts = contactArray.filter((contact) =>(
-      contact.name === query
-    ))
-    return foundContacts
+
+  static searchContact(query: string): Contact[] {
+    const contactArray = this.getContacts();
+    return contactArray.filter((contact) =>
+      contact.name.toLowerCase().includes(query.toLowerCase())
+    );
   }
 }
