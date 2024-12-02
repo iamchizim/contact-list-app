@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
+const ContactDetails = () =>{
+const location = useLocation()
+const contact = location.state || {}
 
-const ContactApp = () =>{
-const [contact, setContact] = useState({})
-const [contacts, setContacts] = useState([])
-
-
+return(
+    
+)
 }
 
-export default ContactApp;
+export default ContactDetails;
