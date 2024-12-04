@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
-import { Contact } from "../utils/contact"; 
+import { Contact } from "../utils/contact";
 import ContactList from "./ContactList";
 import ContactSearch from "./ContactSearch";
 import ContactForm from "./ContactForm";
 
-
-
-const ContactApp: React.FC = () => {
+const ContactApp = () => {
   const [contacts, setContacts] = useState<Contact[]>([]);
 
   useEffect(() => {
@@ -19,20 +17,24 @@ const ContactApp: React.FC = () => {
 
   const deleteContact = (id: string) => {
     Contact.deleteContact(id);
-    refreshContacts(); 
+    refreshContacts();
   };
-
- 
 
   return (
     <div className="App">
-      <h1>CONTACT LIST APP</h1>
-      <ContactSearch searchContact={Contact.searchContact} />
-      <ContactForm refreshContacts={refreshContacts} />
-      <ContactList contacts={contacts} deleteContact={deleteContact} />
+      <h1>CONTACT LIST APP</h1>{" "}
+      <div className="container">
+        <div className="column">
+          <ContactSearch /> <ContactForm
+            refreshContacts={refreshContacts}
+          />
+        </div>
+        <div className="column">
+          <ContactList contacts={contacts} deleteContact={deleteContact} />{" "}
+        </div>
+      </div>
     </div>
   );
 };
 
 export default ContactApp;
-

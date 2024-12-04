@@ -1,26 +1,23 @@
 import React, { useState } from "react";
-import { Contact } from "../utils/contact";
+import { Contact } from "../utils/contact"; // Ensure the path is correct
 
-interface ContactSearchProps {
-  searchContact: (query: string) => Contact[];
-}
-
- const ContactSearch: React.FC<ContactSearchProps> = ({ searchContact }) =>{
-  const [query, setQuery] = useState("");
+const ContactSearch: React.FC = () => {
+  const [query, setQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<Contact[]>([]);
+  const [hasSearched, setHasSearched] = useState<boolean>(false);
 
   const handleSearch = (event: React.FormEvent) => {
     event.preventDefault();
+    setHasSearched(true);
     if (query.trim()) {
-      const results = searchContact(query);
+      const results = Contact.searchContact(query);
       setSearchResults(results);
-      setQuery("");
     }
   };
 
   return (
-    <section>
-      <form onSubmit={handleSearch}>
+    <section className="contact-search">
+      <form id="search-form" onSubmit={handleSearch}>
         <h4>Search Bar</h4>
         <input
           type="text"
@@ -31,17 +28,22 @@ interface ContactSearchProps {
         <button type="submit">Search</button>
       </form>
 
-      <div>
+      <div className="search-results">
+        {hasSearched && searchResults.length === 0 && (
+          <p>Contact was not found</p>
+        )}
         {searchResults.length > 0 && (
-          searchResults.map(contact => (
-            <div key={contact.id}>
+          searchResults.map((contact) => (
+            <div key={contact.id} className="details-contact-card">
               <h3>{contact.name}</h3>
+              <p>{contact.phone}</p>
+              <p>{contact.email}</p>
             </div>
           ))
         )}
       </div>
     </section>
   );
-}
+};
 
 export default ContactSearch;
