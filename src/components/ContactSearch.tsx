@@ -5,8 +5,8 @@ interface ContactSearchProps {
   searchContact: (query: string) => Contact[];
 }
 
-const ContactSearch: React.FC<ContactSearchProps> = ({ searchContact }) => {
-  const [query, setQuery] = useState<string>("");
+ const ContactSearch: React.FC<ContactSearchProps> = ({ searchContact }) =>{
+  const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Contact[]>([]);
 
   const handleSearch = (event: React.FormEvent) => {
@@ -32,18 +32,16 @@ const ContactSearch: React.FC<ContactSearchProps> = ({ searchContact }) => {
       </form>
 
       <div>
-        {searchResults.length > 0 ? (
+        {searchResults.length > 0 && (
           searchResults.map(contact => (
             <div key={contact.id}>
               <h3>{contact.name}</h3>
             </div>
           ))
-        ) : (
-          <p>No results found</p>
         )}
       </div>
     </section>
   );
-};
+}
 
 export default ContactSearch;

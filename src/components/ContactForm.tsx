@@ -1,20 +1,30 @@
-import React from "react";
-import { useState } from "react";
-import { Contact } from "../utils/contact";
+// src/components/ContactForm.tsx
+import React, { useState } from 'react';
+import { Contact } from '../utils/contact';
 
-const ContactForm = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+interface ContactFormProps {
+  refreshContacts: () => void;
+}
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
+const ContactForm: React.FC<ContactFormProps> = ({ refreshContacts }) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
     const newContact = new Contact(name, email, phone);
+
     Contact.addContact(newContact);
-    setName("");
-    setEmail("");
-    setPhone("");
+
+    refreshContacts(); 
+
+    setName('');
+    setEmail('');
+    setPhone('');
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <input
@@ -38,8 +48,10 @@ const ContactForm = () => {
         placeholder="Phone"
         required
       />
-      <button type="submit">Add Contact</button>{" "}
+      <button type="submit">Add Contact</button>
     </form>
   );
 };
+
 export default ContactForm;
+

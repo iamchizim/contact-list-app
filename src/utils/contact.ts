@@ -1,5 +1,4 @@
-
-import { generateId } from './generateId';
+import { generateId } from './generateId'; 
 
 export class Contact {
   id: string;
@@ -14,7 +13,6 @@ export class Contact {
     this.phone = phone;
   }
 
-  // Static methods
   static getContacts(): Contact[] {
     const contactsJson = localStorage.getItem('contacts');
     return contactsJson ? JSON.parse(contactsJson) : [];
@@ -41,3 +39,4 @@ export class Contact {
     );
   }
 }
+

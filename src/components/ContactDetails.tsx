@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 const ContactDetails = () => {
   const location = useLocation();
-  const contact = location.state || {};
+  const {contact} = location.state || {};
 
 
   return (
