@@ -18,7 +18,7 @@ const ContactSearch: React.FC = () => {
   return (
     <section className="contact-search">
       <form id="search-form" onSubmit={handleSearch}>
-        <h4>Search Bar</h4>
+        <h3>SEARCH BAR</h3>
         <input
           type="text"
           value={query}

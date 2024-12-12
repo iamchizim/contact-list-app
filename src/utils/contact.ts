@@ -38,5 +38,7 @@ export class Contact {
       contact.name.toLowerCase().includes(query.toLowerCase())
     );
   }
+
+
 }
 

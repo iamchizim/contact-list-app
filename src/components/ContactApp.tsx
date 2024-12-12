@@ -25,12 +25,13 @@ const ContactApp = () => {
       <h1>CONTACT LIST APP</h1>{" "}
       <div className="container">
         <div className="column">
-          <ContactSearch /> <ContactForm
-            refreshContacts={refreshContacts}
-          />
+          <ContactSearch />
+        </div>
+        <div className="form">
+          <ContactForm refreshContacts={refreshContacts} />
         </div>
         <div className="column">
-          <ContactList contacts={contacts} deleteContact={deleteContact} />{" "}
+          <ContactList contacts={contacts} deleteContact={deleteContact} />
         </div>
       </div>
     </div>

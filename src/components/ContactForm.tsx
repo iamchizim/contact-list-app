@@ -27,6 +27,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ refreshContacts }) => {
 
   return (
     <form id='add-contact-form' onSubmit={handleSubmit}>
+      <h3>CONTACT FORM</h3>
       <input
         type="text"
         value={name}

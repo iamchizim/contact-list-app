@@ -11,8 +11,8 @@ const ContactList: React.FC<ContactListProps> = ({ contacts, deleteContact }) =>
 
   return (
     <section>
+       <h3>CONTACT LIST</h3>
       <div className="contact-card">
-        <h2>CONTACT LIST</h2>
         {contacts.map((contact) => (
           <div key={contact.id}>
             <h3>{contact.name}</h3>
